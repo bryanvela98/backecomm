@@ -32,7 +32,7 @@ router.get('/:cid', (req, res) => {
     cart ? res.json(cart.products) : res.status(404).json({ error: "Carrito no encontrado" });
 });
 
-// Agregar producto a un carrito
+// Adding a product to the cart
 router.post('/:cid/product/:pid', (req, res) => {
     const carts = readCarts();
     const products = JSON.parse(fs.readFileSync(productsPath, 'utf8'));

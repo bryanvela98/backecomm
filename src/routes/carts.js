@@ -16,7 +16,7 @@ const writeCarts = (carts) => {
     fs.writeFileSync(filePath, JSON.stringify(carts, null, 2));
 };
 
-// Crear un nuevo carrito
+// Obtain all carts
 router.post('/', (req, res) => {
     const carts = readCarts();
     const newCart = { id: (carts.length + 1), products: [] };
@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
     res.status(201).json(newCart);
 });
 
-// Obtener los productos de un carrito por ID
+// Obtain cart products by ID
 router.get('/:cid', (req, res) => {
     const carts = readCarts();
     const cart = carts.find(c => c.id === parseInt(req.params.cid));

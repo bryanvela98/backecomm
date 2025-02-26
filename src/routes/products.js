@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
     res.json(products.slice(0, limit));
 });
 
-// Obtener un producto por ID
+// Get a product by ID
 router.get('/:pid', (req, res) => {
     const products = readProducts();
     const product = products.find(p => p.id === parseInt(req.params.pid));

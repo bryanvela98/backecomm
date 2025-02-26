@@ -29,7 +29,7 @@ router.get('/:pid', (req, res) => {
     product ? res.json(product) : res.status(404).json({ error: "Producto no encontrado" });
 });
 
-// Agregar un nuevo producto
+// Add new product
 router.post('/', (req, res) => {
     const { title, description, code, price, stock, category, thumbnails = [] } = req.body;
     if (!title || !description || !code || !price || !stock || !category) {

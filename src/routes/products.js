@@ -15,7 +15,7 @@ const writeProducts = (products) => {
     fs.writeFileSync(filePath, JSON.stringify(products, null, 2));
 };
 
-// Obtener todos los productos
+// Get all the products
 router.get('/', (req, res) => {
     const products = readProducts();
     const limit = req.query.limit ? parseInt(req.query.limit) : products.length;

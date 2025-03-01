@@ -54,7 +54,7 @@ router.post('/', (req, res) => {
     res.status(201).json(newProduct);
 });
 
-// Actualizar un producto
+// Update Product
 router.put('/:pid', (req, res) => {
     const products = readProducts();
     const index = products.findIndex(p => p.id === req.params.pid);

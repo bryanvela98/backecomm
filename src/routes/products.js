@@ -66,7 +66,7 @@ router.put('/:pid', (req, res) => {
     res.json(updatedProduct);
 });
 
-// Eliminar un producto
+// Delete product by ID
 router.delete('/:pid', (req, res) => {
     let products = readProducts();
     products = products.filter(p => p.id !== req.params.pid);

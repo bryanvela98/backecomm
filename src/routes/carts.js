@@ -1,8 +1,8 @@
-const express = require("express");
+import { Router } from "express";
 const fs = require("fs");
 const path = require("path");
 
-const router = express.Router();
+const router = Router();
 const filePath = path.join(__dirname, "../data/carts.json");
 const productsPath = path.join(__dirname, "../data/products.json");
 

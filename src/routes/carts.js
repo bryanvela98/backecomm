@@ -1,10 +1,11 @@
 import { Router } from "express";
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import __dirname from "../utils/utils.js";
 
 const router = Router();
-const filePath = path.join(__dirname, "../data/carts.json");
-const productsPath = path.join(__dirname, "../data/products.json");
+const filePath = path.join(__dirname, "data/carts.json");
+const productsPath = path.join(__dirname, "data/products.json");
 
 //Reading carts file
 const readCarts = () => {
@@ -56,4 +57,4 @@ router.post("/:cid/product/:pid", (req, res) => {
   res.json(cart);
 });
 
-module.exports = router;
+export default router;

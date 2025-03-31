@@ -1,5 +1,5 @@
 /**
- * Archivo auxiliar que nos ayuda a obtener la ruta del directorio actual.
+ * File to get actual folder route.
  * Es útil para configurar las vistas, los archivos estáticos y cuando usamos Multer
  */
 import { dirname } from "path";

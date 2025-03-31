@@ -2,14 +2,21 @@ import __dirname from "./src/utils/utils.js";
 import handlebars from "express-handlebars";
 import express from "express";
 import { Server } from "socket.io";
+import dotenv from "dotenv";
+
+//Loading env var
+
+dotenv.config();
+const urlMongo = process.env.MONGO_URL;
+const port = process.env.PORT;
 
 // Importing routers
 import productsRouter from "./src/routes/products.js";
 import cartsRouter from "./src/routes/carts.js";
 
 const app = express();
-const httpserver = app.listen(8080, () => {
-  console.log("Server is running on port 8080");
+const httpserver = app.listen(port, () => {
+  console.log( "Server is running on PORT: " + port);
 });
 
 //Creating socket server

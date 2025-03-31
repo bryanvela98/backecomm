@@ -1,7 +1,7 @@
 /**
  * File to get actual folder route.
- * Es útil para configurar las vistas, los archivos estáticos y cuando usamos Multer
- */
+ * Util to config views, and static file while usiong Multer
+ * */
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 

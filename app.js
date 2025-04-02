@@ -1,26 +1,18 @@
-import __dirname from "./src/utils/utils.js";
+import __dirname from "./utils.js";
 import handlebars from "express-handlebars";
 import express from "express";
-import { Server } from "socket.io";
-import dotenv from "dotenv";
-
-//Loading env var
-
-dotenv.config();
-const urlMongo = process.env.MONGO_URL;
-const port = process.env.PORT;
+import mongoose from "mongoose";
+import { config } from "./src/config/config.js";
 
 // Importing routers
-import productsRouter from "./src/routes/products.js";
-import cartsRouter from "./src/routes/carts.js";
+import productsRouter from "./src/routes/products.router.js";
+import cartsRouter from "./src/routes/carts.router.js";
+import viewsRouter from "./src/routes/views.router.js";
 
 const app = express();
-const httpserver = app.listen(port, () => {
-  console.log( "Server is running on PORT: " + port);
-});
 
-//Creating socket server
-const io = new Server(httpserver); // Socket.io server
+app.use(express.json()); // For parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 //Config handlebars
 
@@ -31,8 +23,22 @@ app.set("view engine", "handlebars");
 //Load public folder as static files foldes
 app.use(express.static(__dirname + "/public"));
 
-app.use(express.json()); // For parsing application/json
-app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+//Connect to MongoDB
+mongoose
+  .connect(config.URL_MONGODB)
+  .then(() => {
+    console.log("Connected to MongoDB successfully");
+  })
+  .catch((err) => {
+    console.error("Error connecting to MongoDB:", err.message);
+    process.exit(1); // Exit the process with failure
+  });
 
+app.listen(config.PORT, () => {
+  console.log(`Server is running on port ${config.PORT}`);
+});
+
+// Load routers
+app.use("/", viewsRouter); // Views router
 app.use("/products", productsRouter); // Products router
 app.use("/carts", cartsRouter); // Carts router

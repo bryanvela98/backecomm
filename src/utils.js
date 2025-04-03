@@ -1,6 +1,5 @@
 /**
  * File to get actual folder route.
- * Util to config views, and static file while usiong Multer
  * */
 import { dirname } from "path";
 import { fileURLToPath } from "url";

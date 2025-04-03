@@ -2,26 +2,26 @@ import __dirname from "./utils.js";
 import handlebars from "express-handlebars";
 import express from "express";
 import mongoose from "mongoose";
-import { config } from "./src/config/config.js";
+import { config } from "./config/config.js";
 
 // Importing routers
-import productsRouter from "./src/routes/products.router.js";
-import cartsRouter from "./src/routes/carts.router.js";
-import viewsRouter from "./src/routes/views.router.js";
+import productsRouter from "./routes/products.router.js";
+import cartsRouter from "./routes/carts.router.js";
+import viewsRouter from "./routes/views.router.js";
 
 const app = express();
 
 app.use(express.json()); // For parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-//Config handlebars
+/* //Config handlebars
 
 app.engine("handlebars", handlebars.engine());
 app.set("views", __dirname + "/views");
-app.set("view engine", "handlebars");
+app.set("view engine", "handlebars"); */
 
-//Load public folder as static files foldes
-app.use(express.static(__dirname + "/public"));
+/* //Load public folder as static files foldes
+app.use(express.static(__dirname + "/public")); */
 
 //Connect to MongoDB
 mongoose
@@ -39,6 +39,6 @@ app.listen(config.PORT, () => {
 });
 
 // Load routers
-app.use("/", viewsRouter); // Views router
+/* app.use("/", viewsRouter); // Views router */
 app.use("/products", productsRouter); // Products router
 app.use("/carts", cartsRouter); // Carts router

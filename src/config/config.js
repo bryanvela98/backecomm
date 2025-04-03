@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 
-dotenv.dotenvConfig();
+dotenv.config();
 
 export const config = {
   PORT: process.env.PORT ?? 8080,
